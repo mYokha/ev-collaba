@@ -1,11 +1,11 @@
-var num = 243; //number
-var str = 'test'; //string
-var bool = true; //boolean
-var arr = ['1', 2]; //object
-var obj = { a: 1, b: 2 }; //object
-var nu = null; //object
-var und = undefined; //undefined
-var func = function () {}; //function
+var num = 243; // number
+var str = 'test'; // string
+var bool = true; // boolean
+var arr = ['1', 2]; // object
+var obj = { a: 1, b: 2 }; // object
+var nu = null; // object
+var und = undefined; // undefined
+var func = function () {}; // function
 
 
 // --- Hoisting
@@ -26,14 +26,14 @@ var func = function () {}; //function
 
 // ex. 1
 var a;
-//console.log( a );
+// console.log( a );
 
 // ex. 2
 var b = 1;
-//console.log( b );
+// console.log( b );
 
 // ex. 3
-//console.log( funcExpr );
+// console.log( funcExpr );
 var funcExpr = function() {
     console.log('Show express func');
 };
@@ -42,22 +42,22 @@ var funcExpr = function() {
 var funcExprA = function() {
     console.log('Show express func');
 };
-//console.log( funcExprA );
+// console.log( funcExprA );
 
 // ex. 5
 var funcExprB = function() {
     console.log('Show express func');
 };
-//console.log( funcExprB() );
+// console.log( funcExprB() );
 
 // ex. 6
 function normalFunc() {
     console.log('Show normal func');
 }
-//normalFunc();
+// normalFunc();
 
 // ex. 7
-//normalFuncB();
+// normalFuncB();
 function normalFuncB() {
     console.log('Show normal func');
 }
