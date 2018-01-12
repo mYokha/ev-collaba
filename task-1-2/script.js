@@ -14,4 +14,10 @@ sortByYear();
 function filterByYear(array, minYear, maxYear) {
 
 }
-filterByYear(array, null, 2000);
+//filterByYear(array, null, 2000);
+
+
+var testForTest = filmsInJSON.filter(function (entry) {
+    return entry.year >= 2000 && entry.year <= 2010;
+});
+console.log(testForTest);
