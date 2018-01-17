@@ -73,6 +73,8 @@ function getAmountByGenres() {
 }
 //getAmountByGenres();
 
+
+// Get total duration
 function getTotalDuration() {
     var filmsArr = filmsInJSON.slice(0);
     var holder = [];
@@ -93,3 +95,21 @@ function getTotalDuration() {
     console.log('Total duration:', totalDuration);
 }
 //getTotalDuration();
+
+
+// Get total comments by film
+function getTotalCommentsByFilm(filmId) {
+    var filmsArr = filmsInJSON.slice(0);
+
+    // Get film by id
+    var getFilmById = filmsArr.forEach(function (entry) {
+        if ( entry.id === filmId ) {
+            return entry.comments.length;
+            console.log(entry.comments.length);
+        }
+        //console.log(entry.comments.length);
+    });
+
+    console.log('Total count of comments in your film is:', getFilmById);
+}
+getTotalCommentsByFilm(4);
