@@ -67,8 +67,29 @@ function getAmountByGenres() {
         genreArr[holder[el]]++;
     }
     // I get a little bit of help, case i don't know, that 'key' = key in arr...)
-    // I think that one of loop we can pull down...
+    // I think that one of loop we may pull down...
 
-    console.log('Get sum of each genre', genreArr);
+    console.log('Get sum of each genre:', genreArr);
 }
 //getAmountByGenres();
+
+function getTotalDuration() {
+    var filmsArr = filmsInJSON.slice(0);
+    var holder = [];
+
+    // Sum function
+    function getSum(a, b) {
+        return a + b;
+    }
+
+    // Get all durations
+    var getTotalDuration = filmsArr.forEach(function (entry) {
+        holder.push(entry.duration);
+    });
+
+    // Get sum
+    var totalDuration = holder.reduce(getSum);
+
+    console.log('Total duration:', totalDuration);
+}
+//getTotalDuration();
