@@ -1,115 +1,25 @@
-// Sort by year
-function sortByYear() {
-    var filmsArr = filmsInJSON.slice(0);
+// Basic array methods
 
-    filmsArr.sort(function(a, b) {
-        return a.year - b.year;
-    });
-    console.log('Sort by year:', filmsArr);
-}
-//sortByYear();
+// Create function *sortByYear* that accepts films array and returns array __sorted by year__
+const sortByYear = arr => arr.sort((a, b) => a.year - b.year)
+// console.log(sortByYear(filmsInJSON))
 
+// Create function *filterByYears* that has three parametrs (array, minYear, maxYear) but only
+// first one is required. If we only pass array it just returns it. If we pass second parameter
+// it filters it by __minimum release year__, if we pass min and max it filters __between these
+// two years__. Also we can pass (array, null, 2000) that should return __all films before 2000__.
 
-// Filter by years
-function filterByYears(array, minYear, maxYear) {
-    var filmsArr = filmsInJSON.slice(0);
-
-    // Undefined properties
-    minYear = minYear || undefined || null;
-    maxYear = maxYear || undefined;
-
-    if( array.length && minYear === undefined && maxYear === undefined ) {
-        console.log('Full films list:', filmsArr);
-    } else if ( array.length && minYear && minYear !== undefined && minYear !== null && minYear !== 'null' && maxYear === undefined ) {
-        var filmsWithMinYear =  filmsArr.filter(function (entry) {
-            return entry.year >= minYear;
-        });
-        console.log('In the range from min year:', filmsWithMinYear);
-    } else if ( minYear === null || minYear === 'null' ) {
-        var filmsWithMaxYearOnly = filmsArr.filter(function (entry) {
-            return entry.year <= maxYear;
-        });
-        console.log('In the range up to the maximum date:', filmsWithMaxYearOnly);
-    } else if ( array.length && maxYear && maxYear !== undefined ) {
-        var filmsWithMaxYear = filmsArr.filter(function (entry) {
-            return entry.year >= minYear && entry.year <= maxYear;
-        });
-        console.log('In the range from the min to the max date:', filmsWithMaxYear);
+const filterByYears = (array, minYear, maxYear) => {
+    if (minYear && !maxYear) {
+        return array.filter(el => el.year >= minYear)
+    } else if (!minYear && maxYear) {
+        return array.filter(el => el.year <= maxYear)
+    } else if (minYear && maxYear) {
+        return array.filter(el => el.year >= minYear && el.year <= maxYear)
     }
+    return array
 }
-//filterByYears('array', 'null', 2000);
 
-
-// Get amount by genres
-function getAmountByGenres() {
-    var filmsArr = filmsInJSON.slice(0);
-    var holder = [];
-    var genreArr = {};
-
-    // Grub all genres
-    var getAllGenres = filmsArr.forEach(function (entry) {
-        holder.push(entry.genre);
-    });
-
-    // Get unique genres
-    var genreHolder = holder.filter(function(item, i, ar) {
-        // I have no idea about arguments and why they goes in this order
-        return ar.indexOf(item) === i;
-    });
-
-    // Set new array of genres
-    for (var i = 0; i < genreHolder.length; i++) {
-        genreArr[genreHolder[i]] = 0;
-    }
-
-    // Calculates films
-    for (var el = 0; el < holder.length; el++) {
-        genreArr[holder[el]]++;
-    }
-    // I get a little bit of help, case i don't know, that 'key' = key in arr...)
-    // I think that one of loop we may pull down...
-
-    console.log('Get sum of each genre:', genreArr);
-}
-//getAmountByGenres();
-
-
-// Get total duration
-function getTotalDuration() {
-    var filmsArr = filmsInJSON.slice(0);
-    var holder = [];
-
-    // Sum function
-    function getSum(a, b) {
-        return a + b;
-    }
-
-    // Get all durations
-    var getTotalDuration = filmsArr.forEach(function (entry) {
-        holder.push(entry.duration);
-    });
-
-    // Get sum
-    var totalDuration = holder.reduce(getSum);
-
-    console.log('Total duration:', totalDuration);
-}
-//getTotalDuration();
-
-
-// Get total comments by film
-function getTotalCommentsByFilm(filmId) {
-    var filmsArr = filmsInJSON.slice(0);
-
-    // Get film by id
-    var getFilmById = filmsArr.forEach(function (entry) {
-        if ( entry.id === filmId ) {
-            return entry.comments.length;
-            console.log(entry.comments.length);
-        }
-        //console.log(entry.comments.length);
-    });
-
-    console.log('Total count of comments in your film is:', getFilmById);
-}
-getTotalCommentsByFilm(4);
+// console.log(filterByYears(filmsInJSON))
+// console.log(filterByYears(filmsInJSON, 1995))
+// console.log(filterByYears(filmsInJSON, 1995, 1999))
