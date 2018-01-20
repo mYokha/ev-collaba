@@ -29,3 +29,9 @@ const getAmountByGenres = arr => arr.reduce((genres, film) => {
 }, {})
 
 // console.log(getAmountByGenres(filmsInJSON))
+
+
+// Create function getTotalDuration that returns total amount of films duration
+const getTotalDuration = arr => arr.reduce((totalDur, film) => totalDur += film.duration, 0)
+
+// console.log(getTotalDuration(filmsInJSON))
