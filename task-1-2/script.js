@@ -23,8 +23,8 @@ const filterByYears = (array, minYear, maxYear) => {
 // Create function *getAmountByGenres* that calculates how many films of each genre are in the
 // array and returns an object like { drama: 5, comedy: 10, ... }
 
-const getAmountByGenres = arr => arr.reduce((genres, item) => {
-    genres[item.genre] ? genres[item.genre] ++ : genres[item.genre] = 1
+const getAmountByGenres = arr => arr.reduce((genres, film) => {
+    genres[film.genre] ? genres[film.genre]++ : (genres[film.genre] = 1)
     return genres
 }, {})
 
