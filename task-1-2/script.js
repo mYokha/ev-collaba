@@ -98,3 +98,10 @@ const sortByRating = filmsArr => filmsArr
   .sort((film1, film2) => getFilmRating(film2) - getFilmRating(film1))
 
   // console.log(sortByRating(filmsInJSON))
+
+  // Create function removeFilm with second parameter filmId that returns array
+  // without mentioned film
+  const removeFilm = (filmsArr, filmId) => filmsArr
+    .filter(film => film.id !== filmId)
+
+  console.log(removeFilm(filmsInJSON, 3))
