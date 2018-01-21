@@ -84,3 +84,17 @@ const getRatingByFilmId = (filmsArr, filmId) => {
 }
 
 // console.log(getRatingByFilmId(filmsInJSON, 8))
+
+// Create function sortByRating that returns the same array of films sorted by
+// rating in descending order
+const getFilmRating = film => {
+  const sumRating = film.comments
+  .reduce((sum, comment) => sum += comment.rating, 0) || -1
+
+  return (sumRating / film.comments.length).toFixed(1)
+}
+
+const sortByRating = filmsArr => filmsArr
+  .sort((film1, film2) => getFilmRating(film2) - getFilmRating(film1))
+
+  // console.log(sortByRating(filmsInJSON))
