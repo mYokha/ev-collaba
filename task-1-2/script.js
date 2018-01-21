@@ -12,9 +12,12 @@ const sortByYear = arr => arr.sort((a, b) => a.year - b.year)
 // year, if we pass min and max it filters between these two years. Also we can
 // pass (array, null, 2000) that should return all films before 2000.
 const filterByYears = (array, minYear, maxYear) => {
-  if (minYear && !maxYear) return array.filter(el => el.year >= minYear)
-  if (!minYear && maxYear) return array.filter(el => el.year <= maxYear)
-  if (minYear && maxYear) return array.filter(el => el.year >= minYear && el.year <= maxYear)
+  if (minYear && !maxYear) return array
+    .filter(el => el.year >= minYear)
+  if (!minYear && maxYear) return array
+    .filter(el => el.year <= maxYear)
+  if (minYear && maxYear) return array
+    .filter(el => el.year >= minYear && el.year <= maxYear)
   return array
 }
 
@@ -87,21 +90,37 @@ const getRatingByFilmId = (filmsArr, filmId) => {
 
 // Create function sortByRating that returns the same array of films sorted by
 // rating in descending order
-const getFilmRating = film => {
-  const sumRating = film.comments
-  .reduce((sum, comment) => sum += comment.rating, 0) || -1
+const getFilmRating = comments => {
+  const totalRating = comments
+  .reduce((sum, comment) => sum += comment.rating, 0)
 
-  return (sumRating / film.comments.length).toFixed(1)
+  return comments.length
+    ? (totalRating / comments.length).toFixed(1)
+    : -1
 }
 
 const sortByRating = filmsArr => filmsArr
-  .sort((film1, film2) => getFilmRating(film2) - getFilmRating(film1))
+  .sort((film1, film2) => getFilmRating(film2.comments) - getFilmRating(film1.comments))
 
-  // console.log(sortByRating(filmsInJSON))
+// console.log(sortByRating(filmsInJSON))
 
-  // Create function removeFilm with second parameter filmId that returns array
-  // without mentioned film
-  const removeFilm = (filmsArr, filmId) => filmsArr
-    .filter(film => film.id !== filmId)
+// Create function removeFilm with second parameter filmId that returns array
+// without mentioned film
+const removeFilm = (filmsArr, filmId) => filmsArr
+  .filter(film => film.id !== filmId)
 
-  console.log(removeFilm(filmsInJSON, 3))
+// console.log(removeFilm(filmsInJSON, 3))
+
+// Create function removeComment with second parameter filmId and third
+// parameter commentId that returns array of films without mentioned comment
+// of film.
+const removeComment = (filmsArr, filmId, commentId) => filmsArr
+  .map(film => {
+    if (film.id === filmId) {
+      film.comments = film.comments.filter(comment => comment.id !== commentId)
+    }
+
+    return film
+  })
+
+// console.log(removeComment(filmsInJSON, 3, 1))
