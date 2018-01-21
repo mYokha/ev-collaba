@@ -73,3 +73,14 @@ const getCommentsByAuthorId = (filmsArr, authorId) => filmsArr
     ]), [])
 
 // console.log(getCommentsByAuthorId(filmsInJSON, 1003))
+
+// Create function getRatingByFilmId, second parameter is filmId. Returns
+// average rating with one number after point
+const getRatingByFilmId = (filmsArr, filmId) => {
+  const { comments } = filmsArr.find(film => film.id === filmId)
+  const sumRating = comments.reduce((sum, comment) => sum += comment.rating, 0)
+
+  return (sumRating / comments.length).toFixed(1)
+}
+
+// console.log(getRatingByFilmId(filmsInJSON, 8))
