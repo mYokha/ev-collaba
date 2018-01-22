@@ -1,12 +1,12 @@
 // Basic array methods
 
-// Create function *sortByYear* that accepts films array and returns array
+// Create function sortByYear that accepts films array and returns array
 // sorted by year
 const sortByYear = arr => arr.sort((a, b) => a.year - b.year)
 
 // console.log(sortByYear(filmsInJSON))
 
-// Create function *filterByYears* that has three parametrs (array, minYear,
+// Create function filterByYears that has three parametrs (array, minYear,
 // maxYear) but only first one is required. If we only pass array it just
 // returns it. If we pass second parameter it filters it by minimum release
 // year, if we pass min and max it filters between these two years. Also we can
@@ -100,7 +100,9 @@ const getFilmRating = comments => {
 }
 
 const sortByRating = filmsArr => filmsArr
-  .sort((film1, film2) => getFilmRating(film2.comments) - getFilmRating(film1.comments))
+  .sort((film1, film2) => {
+    return getFilmRating(film2.comments) - getFilmRating(film1.comments)
+  })
 
 // console.log(sortByRating(filmsInJSON))
 
@@ -124,3 +126,32 @@ const removeComment = (filmsArr, filmId, commentId) => filmsArr
   })
 
 // console.log(removeComment(filmsInJSON, 3, 1))
+
+// Create function addFilm that takes the second parameter as object with
+// structure { title, genre, director, year, duration }. It will add a new film
+// with these params to array, dynamically assigning an id to film (should be
+// the same as length of films +1) and adding empty comments array to it. Should
+// return new updated array of films.
+
+const addFilm = (filmsArr, newFilm) => {
+  newFilm.id = filmsArr.length + 1
+  newFilm.comments = []
+
+  return [
+    ...filmsArr,
+    { ...newFilm, id: filmsArr.length + 1, comments: [] }
+  ]
+}
+
+// console.log(addFilm(filmsInJSON, {
+//   title: 'Liberal Arts',
+//   genre: 'drama',
+//   director: 'Josh Radnor',
+//   year: 2012,
+//   duration: 97
+// }))
+
+// Create function addCommentToFilm, second param is a filmId, third is object
+// whith authorId, authorName, text and rating (1-5). It adds new comment to
+// film. commentId shoud be dynamically assigned (the same as with addFilm
+// function). Returns updated array of films.
