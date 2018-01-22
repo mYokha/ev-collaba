@@ -134,8 +134,14 @@ const removeComment = (filmsArr, filmId, commentId) => filmsArr
 // return new updated array of films.
 
 const addFilm = (filmsArr, newFilm) => {
-  newFilm.id = filmsArr.length + 1
-  newFilm.comments = []
+  const requiredFields = [
+    'title', 'genre', 'director', 'year', 'duration'
+  ]
+
+  const valid = requiredFields.every(reqValue => {
+    return Object.keys(newFilm).includes(reqValue)
+  })
+  if (!valid) throw new Error('ololo something went wrong')
 
   return [
     ...filmsArr,
@@ -155,3 +161,18 @@ const addFilm = (filmsArr, newFilm) => {
 // whith authorId, authorName, text and rating (1-5). It adds new comment to
 // film. commentId shoud be dynamically assigned (the same as with addFilm
 // function). Returns updated array of films.
+
+
+const addCommentToFilm = (filmsArr, filmId, commentObj) => {
+  return filmsArr.map(film => {
+    film.id === filmId && (film.comments = [...film.comments, commentObj])
+
+    return film
+  })
+}
+
+// console.log(addCommentToFilm(filmsInJSON, 2, {
+//   authorId: 1001,
+//   authorName: 'Hebert',
+//   text: 'Lorem ipsim dolor'
+// }))
