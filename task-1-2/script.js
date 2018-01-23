@@ -199,3 +199,29 @@ const updateFilmInfo = (filmsArr, filmId, updates) => {
 //   duration: 100500,
 //   comments: 'fake string'
 // }))
+
+// Create function updateComment, second parameter is object with filmId and
+// commentId, third parameter is new text comment. Updates comment of suggested
+// film and returns updated array of films.
+
+const updateComment = (filmArr, commentToUpdateObj, newComment) => {
+  const { filmId, commentId } = commentToUpdateObj
+  return filmArr.map(film => {
+    if (film.id === filmId) {
+      film.comments.map(comment => {
+        if (comment.id === commentId) comment.text = newComment
+
+        return comment
+      })
+    }
+
+    return film
+  })
+}
+
+// console.log(updateComment(filmsInJSON, {
+//   filmId: 1,
+//   commentId: 2
+// }, 'Lorem ipsum dolor sit amet, an blandit oportere usu, reque summo\
+//  constituam nec id. Viderer temporibus ea sea, adhuc noster interesset\
+//   ut sit.'))
