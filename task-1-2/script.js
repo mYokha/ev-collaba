@@ -176,3 +176,36 @@ const addCommentToFilm = (filmsArr, filmId, commentObj) => {
 //   authorName: 'Hebert',
 //   text: 'Lorem ipsim dolor'
 // }))
+
+// Create function updateFilmInfo second parameter is filmId, third is object
+// with params you want to update (can be title, genre, director, year,
+// duration. We have to skip id and comments if they'll be present in third
+// parameter. Should update existing film. Returns updated array of films.
+
+const updateFilmInfo = (filmsArr, filmId, updateObj) => {
+  const validParams = ['title', 'genre', 'director', 'year', 'duration']
+  const paramsToSkip = ['id', 'comments']
+
+  const keys = Object.keys(updateObj)
+
+  console.log(keys)
+
+  // const { ... } = updateObj
+  console.log(title, genre, director, year, duration)
+
+  return filmsArr.map(film => {
+    if (film.id === filmId) {
+      // Object.keys(film).find(key => key === paramToUpdate)
+      console.log(Object.keys(film))
+      return film
+    }
+  })
+}
+
+console.log(updateFilmInfo(filmsInJSON, 1, {
+  title: 'a piece of shit',
+  genre: 'shit',
+  director: 'loshara',
+  year: 100500,
+  duration: 100500
+}))
