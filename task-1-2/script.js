@@ -206,7 +206,7 @@ const updateFilmInfo = (filmsArr, filmId, updates) => {
 
 const updateComment = (filmArr, commentToUpdateObj, newComment) => {
   const { filmId, commentId } = commentToUpdateObj
-  return filmArr.map(film => {
+  filmArr.forEach(film => {
     if (film.id === filmId) {
       film.comments.map(comment => {
         if (comment.id === commentId) comment.text = newComment
@@ -214,14 +214,14 @@ const updateComment = (filmArr, commentToUpdateObj, newComment) => {
         return comment
       })
     }
-
-    return film
   })
+
+  return filmArr
 }
 
-// console.log(updateComment(filmsInJSON, {
-//   filmId: 1,
-//   commentId: 2
-// }, 'Lorem ipsum dolor sit amet, an blandit oportere usu, reque summo\
-//  constituam nec id. Viderer temporibus ea sea, adhuc noster interesset\
-//   ut sit.'))
+console.log(updateComment(filmsInJSON, {
+  filmId: 1,
+  commentId: 2
+}, 'Lorem ipsum dolor sit amet, an blandit oportere usu, reque summo\
+ constituam nec id. Viderer temporibus ea sea, adhuc noster interesset\
+  ut sit.'))
