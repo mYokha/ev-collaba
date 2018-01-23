@@ -182,30 +182,20 @@ const addCommentToFilm = (filmsArr, filmId, commentObj) => {
 // duration. We have to skip id and comments if they'll be present in third
 // parameter. Should update existing film. Returns updated array of films.
 
-const updateFilmInfo = (filmsArr, filmId, updateObj) => {
-  const validParams = ['title', 'genre', 'director', 'year', 'duration']
-  const paramsToSkip = ['id', 'comments']
+const updateFilmInfo = (filmsArr, filmId, updates) => {
+  const validFields = ['title', 'genre', 'director', 'year', 'duration']
+  const validUpdater = Object.keys(updates).reduce((validObj, key) => {
+    if (validFields.includes(key)) validObj[key] = updates[key]
 
-  const keys = Object.keys(updateObj)
+    return validObj
+  }, {})
 
-  console.log(keys)
-
-  // const { ... } = updateObj
-  console.log(title, genre, director, year, duration)
-
-  return filmsArr.map(film => {
-    if (film.id === filmId) {
-      // Object.keys(film).find(key => key === paramToUpdate)
-      console.log(Object.keys(film))
-      return film
-    }
-  })
+  return filmsArr.map(film => film.id === filmId ? {...film, ...validUpdater} : film)
 }
 
-console.log(updateFilmInfo(filmsInJSON, 1, {
-  title: 'a piece of shit',
-  genre: 'shit',
-  director: 'loshara',
-  year: 100500,
-  duration: 100500
-}))
+// console.log(updateFilmInfo(filmsInJSON, 1, {
+//   director: 'loshara',
+//   year: 100500,
+//   duration: 100500,
+//   comments: 'fake string'
+// }))
